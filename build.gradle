@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id'com.github.johnrengelman.shadow' version '5.2.0'
+}
+
+group 'church.radmacher'
+version '1.0.0'
+def jdaVersion = '5.0.0-alpha.11'
+
+sourceCompatibility = targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    maven {
+        url "https://maven.radmacher.church/releases"
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation("net.dv8tion:JDA:$jdaVersion")
+    implementation("ch.qos.logback:logback-classic:1.2.8")
+    implementation 'pw.chew:jda-chewtils:2.0-SNAPSHOT'
+    implementation 'com.github.docker-java:docker-java:3.2.13'
+    implementation('com.github.docker-java:docker-java-transport-httpclient5')
+}
+
+test {
+    useJUnitPlatform()
+}
+
+compileJava.options.encoding = 'UTF-8'
