@@ -2,6 +2,9 @@ package church.radmacher.marin;
 
 import church.radmacher.marin.commands.MessageListener;
 import church.radmacher.marin.commands.PingCommand;
+import church.radmacher.marin.commands.musicCommands.PlaySongCommand;
+import church.radmacher.marin.utils.musicUtils.AudioManagement;
+import church.radmacher.marin.utils.musicUtils.TrackScheduler;
 import com.jagrosh.jdautilities.command.CommandClient;
 import com.jagrosh.jdautilities.command.CommandClientBuilder;
 import net.dv8tion.jda.api.JDA;
@@ -21,8 +24,10 @@ public class Marin {
             builder.setAlternativePrefix("+");
             builder.setOwnerId(172726364900687872L);
 
+            AudioManagement audioManagement = new AudioManagement();
             // add commands
             builder.addSlashCommand(new PingCommand());
+            builder.addSlashCommand(new PlaySongCommand(audioManagement));
 
             // force update for test server
             builder.forceGuildOnly(970439367715856384L);
